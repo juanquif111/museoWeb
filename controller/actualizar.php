@@ -1,4 +1,5 @@
 <?php
+
 require "../class/Datos.php";
 require "../class/conectar.php";
 
@@ -7,12 +8,10 @@ $json = file_get_contents("php://input");
 $json = json_decode($json);
 
 $bd = new Conectar();
-$sql = "insert into persona(CC,tipoID,nombre,apellido,telefono,email,fecnac) "
-        . "values (?,?,?,?,?,?,?);";
-
+$sql = "update persona set CC = ?,tipoID=?,nombre=?,apellido=?,telefono=?,email=?,fecnac=? where ID=?";
 $conn = $bd->getMysqli();
 $smtp = $conn->prepare($sql);
-$smtp->bind_param("sssssss", $json->numero, $json->tipo, $json->nombre,$json->apellido, $json->telefono, $json->correo, $json->fecha);
+$smtp->bind_param("sssssssi", $json->numero, $json->tipo, $json->nombre,$json->apellido, $json->telefono, $json->correo, $json->fecha,$json->ID);
 
 $res[] = Array();
 if ($smtp->execute()) {
@@ -24,6 +23,5 @@ if ($smtp->execute()) {
 $smtp->close();
 $conn->close();
 echo json_encode($res);
-
 
 

@@ -29,16 +29,17 @@ class Datos {
     public function getHostname() {
         return $this->hostname;
     }
+
     public function getUser() {
         return $this->user;
     }
+
     public function getPassword() {
         return $this->password;
     }
+
     public function getBd() {
         return $this->bd;
     }
-
-
 
 }

@@ -22,7 +22,7 @@ class conectar {
 
     private function conectar() {
         $datos = new Datos();
-        $this->mysqli = new mysqli($datos->getHostname(),$datos->getUser(),$datos->getPassword(),$datos->getBd());
+        $this->mysqli = new mysqli($datos->getHostname(), $datos->getUser(), $datos->getPassword(), $datos->getBd());
         if ($this->mysqli->connect_error) {
             return "Fallo la conexion a mysql:(" . $this->mysqli->connect_errno . ") " . $this->mysql->connect_error;
         } else {
@@ -30,10 +30,9 @@ class conectar {
             return "OK";
         }
     }
-    
-    public function getMysqli(){
+
+    public function getMysqli() {
         return $this->mysqli;
     }
-    
 
 }
